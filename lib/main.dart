@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'telas/tela_dashboard.dart';
+import 'routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pagil Flutter',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -29,9 +30,13 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        useMaterial3: true,
+        fontFamily: 'Roboto',
       ),
       home: TelaDashboard(),
+      routes: AppRoutes.routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
