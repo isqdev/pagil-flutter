@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:pagil_flutter/telas/categoria_musica_form.dart';
 import 'package:pagil_flutter/telas/video_aula_form.dart';
+=======
+import 'telas/tela_dashboard.dart';
+>>>>>>> acb953a5967d6ccebdf67089473518186b4e4084
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: TelaDashboard(),
     );
   }
 }
