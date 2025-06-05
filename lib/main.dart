@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pagil_flutter/telas/categoria_musica_form.dart';
+import 'package:pagil_flutter/telas/video_aula_form.dart';
 
 void main() {
   runApp(const MyApp());
