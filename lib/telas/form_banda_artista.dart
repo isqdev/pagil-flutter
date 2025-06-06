@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../dto/dto_banda_artista.dart';
 
 class BandaArtistaForm extends StatefulWidget {
   final void Function(Map<String, dynamic> data) onSubmit;
@@ -30,27 +31,28 @@ class _BandaArtistaFormState extends State<BandaArtistaForm> {
 
   void _submit() {
     if (_formKey.currentState?.validate() ?? false) {
+      final dto = DTOBandaArtista(
+        id: _idController.text.isNotEmpty ? _idController.text : null,
+        nome: _nomeController.text,
+        descricaoCurta: _descricaoController.text.isNotEmpty ? _descricaoController.text : null,
+        linkRelacionado: _linkRelacionadoController.text.isNotEmpty ? _linkRelacionadoController.text : null,
+        urlFotoPerfil: _urlFotoPerfilController.text.isNotEmpty ? _urlFotoPerfilController.text : null,
+        ativo: _ativo,
+      );
       widget.onSubmit({
-        'id': _idController.text,
-        'nome': _nomeController.text,
-        'descricao_curta': _descricaoController.text.isNotEmpty ? _descricaoController.text : null,
-        'link_relacionado': _linkRelacionadoController.text.isNotEmpty ? _linkRelacionadoController.text : null,
-        'url_foto_perfil': _urlFotoPerfilController.text.isNotEmpty ? _urlFotoPerfilController.text : null,
-        'ativo': _ativo,
+        'id': dto.id,
+        'nome': dto.nome,
+        'descricao_curta': dto.descricaoCurta,
+        'link_relacionado': dto.linkRelacionado,
+        'url_foto_perfil': dto.urlFotoPerfil,
+        'ativo': dto.ativo,
       });
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
           title: const Text('Dados da Banda/Artista'),
           content: SingleChildScrollView(
-            child: Text(
-              'ID: ${_idController.text}\n'
-              'Nome: ${_nomeController.text}\n'
-              'Descrição: ${_descricaoController.text}\n'
-              'Link Relacionado: ${_linkRelacionadoController.text}\n'
-              'URL Foto Perfil: ${_urlFotoPerfilController.text}\n'
-              'Ativo: ${_ativo ? "Sim" : "Não"}',
-            ),
+            child: Text(dto.toString()),
           ),
           actions: [
             TextButton(
