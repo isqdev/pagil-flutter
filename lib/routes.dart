@@ -19,7 +19,7 @@ class AppRoutes {
     aluno: (context) => FormAluno(),
     videoAula: (context) => VideoAulaForm(),
     //fabricante: (context) => FabricantePage(),
-    //sala: (context) => SalaPage(),
+    sala: (context) => FormSala(),
     manutencao: (context) => FormTipoManutencao(),
     categoriaMusica: (context) => CategoriaMusicaForm(),
   };
