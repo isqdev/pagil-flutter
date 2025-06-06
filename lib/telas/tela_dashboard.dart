@@ -5,7 +5,7 @@ class TelaDashboard extends StatelessWidget {
   final List<_DashboardOption> options = [
     _DashboardOption('VideoAula', Icons.play_circle_fill, Colors.blue, null),
     _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
-    _DashboardOption('Fabricante', Icons.factory, Colors.orange, null),
+    _DashboardOption('Fabricante', Icons.factory, Colors.orange, AppRoutes.fabricante),
     _DashboardOption('Sala', Icons.meeting_room, Colors.purple, AppRoutes.sala),
     _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao),
     _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, null),
