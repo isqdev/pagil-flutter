@@ -1,37 +1,41 @@
 import 'package:flutter/material.dart';
 
-class CategoriaMusicaForm extends StatefulWidget {
-  const CategoriaMusicaForm({super.key});
+class VideoAulaForm extends StatefulWidget {
+  const VideoAulaForm({super.key});
 
   @override
-  State<CategoriaMusicaForm> createState() => _CategoriaMusicaFormState();
+  State<VideoAulaForm> createState() => _VideoAulaFormState();
 }
 
-class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
+class _VideoAulaFormState extends State<VideoAulaForm> {
+  final TextEditingController _idController = TextEditingController();
   final TextEditingController _nomeController = TextEditingController();
-  final TextEditingController _descricaoController = TextEditingController();
+  final TextEditingController _linkVideoController = TextEditingController();
   bool _ativo = true;
 
   @override
   void dispose() {
+    _idController.dispose();
     _nomeController.dispose();
-    _descricaoController.dispose();
+    _linkVideoController.dispose();
     super.dispose();
   }
 
   void _submitForm() {
     // Apenas para demonstração: imprime os valores no console
+    print('ID: ${_idController.text}');
     print('Nome: ${_nomeController.text}');
-    print('Descrição: ${_descricaoController.text}');
+    print('Link do Vídeo: ${_linkVideoController.text}');
     print('Ativo: $_ativo');
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Categoria ${_nomeController.text} Salva!')),
+      SnackBar(content: Text('VideoAula "${_nomeController.text}" Salva!')),
     );
 
     // Limpa os campos após enviar
+    _idController.clear();
     _nomeController.clear();
-    _descricaoController.clear();
+    _linkVideoController.clear();
     setState(() {
       _ativo = true;
     });
@@ -40,20 +44,26 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nova Categoria de Música')),
+      appBar: AppBar(title: const Text('Nova VideoAula')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             TextField(
-              controller: _nomeController,
-              decoration: const InputDecoration(labelText: 'Nome'),
+              controller: _idController,
+              decoration: const InputDecoration(labelText: 'ID'),
+              keyboardType:
+                  TextInputType.number, // Para permitir apenas números
             ),
             const SizedBox(height: 10),
             TextField(
-              controller: _descricaoController,
-              decoration: const InputDecoration(labelText: 'Descrição'),
-              maxLines: 3,
+              controller: _nomeController,
+              decoration: const InputDecoration(labelText: 'Nome da VideoAula'),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _linkVideoController,
+              decoration: const InputDecoration(labelText: 'Link do Vídeo'),
             ),
             SwitchListTile(
               title: const Text('Ativo'),

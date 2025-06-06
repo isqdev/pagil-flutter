@@ -5,6 +5,7 @@ import './telas/form_fabricante.dart';
 import './telas/form_manutencao.dart';
 import './telas/form_sala.dart';
 import './telas/tela_dashboard.dart';
+import './telas/form_video_aula.dart';
 
 class AppRoutes {
   static const String aluno = '/aluno';
@@ -15,11 +16,12 @@ class AppRoutes {
   static const String categoriaMusica = '/categoria-musica';
 
   static Map<String, WidgetBuilder> get routes => {
-    aluno: (context) => FormAluno(),
-    //videoAula: (context) => VideoAulaPage(),
-    fabricante: (context) => FabricanteForm(),
-    sala: (context) => FormSala(),
-    manutencao: (context) => FormTipoManutencao(),
-    //categoriaMusica: (context) => CategoriaMusicaPage(),
-  };
+        aluno: (context) => FormAluno(),
+        videoAula: (context) => VideoAulaForm(),
+        fabricante: (context) => FabricanteForm(),
+        sala: (context) => FormSala(),
+        manutencao: (context) => FormTipoManutencao(),
+        categoriaMusica: (context) => CategoriaMusicaForm(),
+      };
 }
+

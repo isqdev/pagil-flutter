@@ -3,12 +3,17 @@ import '../routes.dart';
 
 class TelaDashboard extends StatelessWidget {
   final List<_DashboardOption> options = [
-    _DashboardOption('VideoAula', Icons.play_circle_fill, Colors.blue, null),
+    _DashboardOption(
+      'VideoAula',
+      Icons.play_circle_fill,
+      Colors.blue,
+      AppRoutes.videoAula,
+    ),
     _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
     _DashboardOption('Fabricante', Icons.factory, Colors.orange, AppRoutes.fabricante),
-    _DashboardOption('Sala', Icons.meeting_room, Colors.purple, AppRoutes.sala),
-    _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao),
-    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, null),
+    _DashboardOption('Sala', Icons.meeting_room, Colors.purple, null),
+    _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao,),
+    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, AppRoutes.categoriaMusica),
   ];
 
   @override
@@ -37,49 +42,62 @@ class TelaDashboard extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 18,
             mainAxisSpacing: 18,
-            children: options.map((option) {
-              return GestureDetector(
-                onTap: option.route != null
-                    ? () => Navigator.pushNamed(context, option.route!)
-                    : null,
-                child: Card(
-                  elevation: 8,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: option.color.withOpacity(0.18),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: option.color,
-                          radius: 34,
-                          child: Icon(option.icon, color: Colors.white, size: 36),
+            children:
+                options.map((option) {
+                  return GestureDetector(
+                    onTap:
+                        option.route != null
+                            ? () => Navigator.pushNamed(context, option.route!)
+                            : null,
+                    child: Card(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      color: option.color.withOpacity(0.18),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 18,
+                          horizontal: 8,
                         ),
-                        const SizedBox(height: 18),
-                        Text(
-                          option.title,
-                          style: TextStyle(
-                            fontSize: 19,
-                            fontWeight: FontWeight.w600,
-                            color: option.color.shade700,
-                            letterSpacing: 1.1,
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: option.color,
+                              radius: 34,
+                              child: Icon(
+                                option.icon,
+                                color: Colors.white,
+                                size: 36,
+                              ),
+                            ),
+                            const SizedBox(height: 18),
+                            Text(
+                              option.title,
+                              style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.w600,
+                                color: option.color.shade700,
+                                letterSpacing: 1.1,
+                              ),
+                            ),
+                            if (option.route != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 18,
+                                  color: option.color.shade700,
+                                ),
+                              ),
+                          ],
                         ),
-                        if (option.route != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Icon(Icons.arrow_forward_ios, size: 18, color: option.color.shade700),
-                          ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              );
-            }).toList(),
+                  );
+                }).toList(),
           ),
         ),
       ),
