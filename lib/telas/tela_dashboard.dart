@@ -3,12 +3,17 @@ import '../routes.dart';
 
 class TelaDashboard extends StatelessWidget {
   final List<_DashboardOption> options = [
-    _DashboardOption('VideoAula', Icons.play_circle_fill, Colors.blue, null),
+    _DashboardOption(
+      'VideoAula',
+      Icons.play_circle_fill,
+      Colors.blue,
+      AppRoutes.videoAula,
+    ),
     _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
     _DashboardOption('Fabricante', Icons.factory, Colors.orange, null),
     _DashboardOption('Sala', Icons.meeting_room, Colors.purple, null),
-    _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao),
-    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, null),
+    _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao,),
+    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, AppRoutes.categoriaMusica),
   ];
 
   @override
