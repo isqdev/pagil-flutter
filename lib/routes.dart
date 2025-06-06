@@ -22,4 +22,11 @@ class AppRoutes {
     manutencao: (context) => FormTipoManutencao(),
     categoriaMusica: (context) => CategoriaMusicaForm(),
   };
+        aluno: (context) => FormAluno(),
+        //videoAula: (context) => VideoAulaPage(),
+        //fabricante: (context) => FabricantePage(),
+        sala: (context) => FormSala(),
+        manutencao: (context) => FormTipoManutencao(),
+        //categoriaMusica: (context) => CategoriaMusicaPage(),
+      };
 }
