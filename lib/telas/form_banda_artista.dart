@@ -70,7 +70,7 @@ class _BandaArtistaFormState extends State<BandaArtistaForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro de Banda/Artista'),
-        backgroundColor: Colors.indigo.shade700,
+        backgroundColor: Colors.pink.shade400,
         elevation: 6,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
@@ -98,7 +98,7 @@ class _BandaArtistaFormState extends State<BandaArtistaForm> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.music_note, color: Colors.indigo.shade700, size: 48),
+                      Icon(Icons.music_note, color: Colors.pink.shade400, size: 48),
                       const SizedBox(height: 16),
                       TextFormField(
                         controller: _idController,
@@ -152,10 +152,10 @@ class _BandaArtistaFormState extends State<BandaArtistaForm> {
                       SwitchListTile(
                         title: const Text('Ativo', style: TextStyle(fontWeight: FontWeight.w600)),
                         value: _ativo,
-                        activeColor: Colors.indigo,
+                        activeColor: Colors.pink,
                         onChanged: (v) => setState(() => _ativo = v),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        tileColor: Colors.indigo.withOpacity(0.05),
+                        tileColor: Colors.pink.withOpacity(0.05),
                       ),
                       const SizedBox(height: 28),
                       SizedBox(
@@ -173,7 +173,7 @@ class _BandaArtistaFormState extends State<BandaArtistaForm> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo.shade700,
+                            backgroundColor: Colors.pink.shade400,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             elevation: 4,
                           ),
