@@ -27,7 +27,9 @@ class AppRoutes {
     sala: (context) => FormSala(),
     manutencao: (context) => FormTipoManutencao(),
     categoriaMusica: (context) => CategoriaMusicaForm(),
-    bandaArtista: (context) => BandaArtistaForm(),
+    bandaArtista: (context) => BandaArtistaForm(onSubmit: (value) {
+      // TODO: implement onSubmit logic
+    }),
     turma: (context) => FormTurma()
 
   };
