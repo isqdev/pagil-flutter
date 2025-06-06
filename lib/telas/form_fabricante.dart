@@ -16,12 +16,11 @@ class _FabricanteFormState extends State<FabricanteForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _telefoneController = TextEditingController();
 
-  bool _ativo = false; // Definindo se está ativo ou não
+  bool _ativo = true; // Definindo se está ativo ou não
 
   // Função para validar o formulário
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      // Se for válido, você pode fazer o que quiser com os dados
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Dados enviados!')));
@@ -31,118 +30,158 @@ class _FabricanteFormState extends State<FabricanteForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Formulário de Fabricante')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey, // Chave do formulário
-          child: ListView(
-            children: [
-              // Campo Nome
-              TextFormField(
-                controller: _nomeController,
-                decoration: InputDecoration(
-                  labelText: 'Nome do Fabricante',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Nome é obrigatório';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16),
-
-              // Campo Descrição
-              TextFormField(
-                controller: _descricaoController,
-                decoration: InputDecoration(
-                  labelText: 'Descrição',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Descrição é obrigatória';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16),
-
-              // Campo Nome do Contato Principal
-              TextFormField(
-                controller: _nomeContatoController,
-                decoration: InputDecoration(
-                  labelText: 'Nome Contato Principal',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Nome do Contato Principal é obrigatório';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16),
-
-              // Campo E-mail
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'E-mail de Contato',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'E-mail é obrigatório';
-                  }
-                  if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                    return 'Digite um e-mail válido';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16),
-
-              // Campo Telefone
-              TextFormField(
-                controller: _telefoneController,
-                decoration: InputDecoration(
-                  labelText: 'Telefone de Contato',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Telefone é obrigatório';
-                  }
-                  if (!RegExp(r'^\+?[0-9]{7,15}$').hasMatch(value)) {
-                    return 'Digite um telefone válido';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16),
-
-              // Checkbox para Ativo
-              Row(
-                children: [
-                  Text('Ativo: '),
-                  Checkbox(
-                    value: _ativo,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _ativo = value!;
-                      });
-                    },
+      appBar: AppBar(
+        title: const Text('Cadastro de Fabricante'),
+        backgroundColor: Colors.orange.shade700,
+        elevation: 6,
+        centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFF3E6F3), Color(0xFFF8F8FF)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Card(
+              elevation: 10,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.business, color: Colors.orange.shade700, size: 48),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        controller: _nomeController,
+                        decoration: InputDecoration(
+                          labelText: 'Nome do Fabricante*',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.edit),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Informe o nome';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _descricaoController,
+                        decoration: InputDecoration(
+                          labelText: 'Descrição*',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.description),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Informe a descrição';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _nomeContatoController,
+                        decoration: InputDecoration(
+                          labelText: 'Nome Contato Principal*',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.contact_phone),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Informe o nome do contato';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          labelText: 'E-mail de Contato*',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.email),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Informe o e-mail';
+                          }
+                          if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                            return 'Digite um e-mail válido';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _telefoneController,
+                        decoration: InputDecoration(
+                          labelText: 'Telefone de Contato*',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.phone),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Informe o telefone';
+                          }
+                          if (!RegExp(r'^\+?[0-9]{7,15}$').hasMatch(value)) {
+                            return 'Digite um telefone válido';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 18),
+                      SwitchListTile(
+                        title: const Text('Ativo', style: TextStyle(fontWeight: FontWeight.w600)),
+                        value: _ativo,
+                        activeColor: Colors.orange,
+                        onChanged: (value) {
+                          setState(() {
+                            _ativo = value;
+                          });
+                        },
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        tileColor: Colors.orange.withOpacity(0.05),
+                      ),
+                      const SizedBox(height: 28),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: ElevatedButton.icon(
+                          onPressed: _submitForm,
+                          icon: const Icon(Icons.save_alt, color: Colors.white),
+                          label: const Text(
+                            'Salvar',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orange.shade700,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            elevation: 4,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-              SizedBox(height: 16),
-
-              // Botão de Submit
-              ElevatedButton(onPressed: _submitForm, child: Text('Enviar')),
-            ],
+            ),
           ),
         ),
       ),
