@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'telas/form_aluno.dart';
-import 'telas/form_categoria_musica.dart';
-import 'telas/form_fabricante.dart';
-import 'telas/form_manutencao.dart';
-import 'telas/form_sala.dart';
-import 'telas/tela_dashboard.dart';
+import './telas/form_categoria_musica.dart';
+import './telas/form_fabricante.dart';
+import './telas/form_manutencao.dart';
+import './telas/form_sala.dart';
+import './telas/tela_dashboard.dart';
 
 class AppRoutes {
   static const String aluno = '/aluno';
@@ -16,10 +16,10 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> get routes => {
         aluno: (context) => FormAluno(),
-        videoAula: (context) => VideoAulaPage(),
-        fabricante: (context) => FabricantePage(),
-        sala: (context) => SalaPage(),
-        manutencao: (context) => ManutencaoPage(),
-        categoriaMusica: (context) => CategoriaMusicaPage(),
+        //videoAula: (context) => VideoAulaPage(),
+        //fabricante: (context) => FabricantePage(),
+        //sala: (context) => SalaPage(),
+        manutencao: (context) => FormTipoManutencao(),
+        //categoriaMusica: (context) => CategoriaMusicaPage(),
       };
 }
