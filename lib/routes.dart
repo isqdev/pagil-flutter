@@ -16,12 +16,11 @@ class AppRoutes {
   static const String categoriaMusica = '/categoria-musica';
 
   static Map<String, WidgetBuilder> get routes => {
-        aluno: (context) => FormAluno(),
-        videoAula: (context) => VideoAulaForm(),
-        fabricante: (context) => FabricanteForm(),
-        sala: (context) => FormSala(),
-        manutencao: (context) => FormTipoManutencao(),
-        categoriaMusica: (context) => CategoriaMusicaForm(),
-      };
+    aluno: (context) => FormAluno(),
+    videoAula: (context) => VideoAulaForm(),
+    fabricante: (context) => FabricanteForm(),
+    sala: (context) => FormSala(),
+    manutencao: (context) => FormTipoManutencao(),
+    categoriaMusica: (context) => CategoriaMusicaForm(),
+  };
 }
-

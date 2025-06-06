@@ -130,66 +130,155 @@ class _FormAlunoState extends State<FormAluno> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cadastro de Aluno')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              TextFormField(
-                controller: _nomeController,
-                decoration: const InputDecoration(labelText: 'Nome completo *'),
-                validator: _validaNome,
+      appBar: AppBar(
+        title: const Text('Cadastro de Aluno'),
+        backgroundColor: Colors.indigo.shade700,
+        elevation: 6,
+        centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFE3E6F3), Color(0xFFF8F8FF)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Card(
+              elevation: 10,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.person, color: Colors.indigo.shade700, size: 48),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        controller: _nomeController,
+                        decoration: InputDecoration(
+                          labelText: 'Nome completo *',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.person),
+                        ),
+                        validator: _validaNome,
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          labelText: 'E-mail *',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.email),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: _validaEmail,
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _dataNascController,
+                        decoration: InputDecoration(
+                          labelText: 'Data de nascimento * (AAAA-MM-DD)',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.cake),
+                        ),
+                        keyboardType: TextInputType.datetime,
+                        validator: _validaDataNasc,
+                      ),
+                      const SizedBox(height: 18),
+                      DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                          labelText: 'Gênero *',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.wc),
+                        ),
+                        value: _genero,
+                        items: _generos.map((g) => DropdownMenuItem(value: g, child: Text(g))).toList(),
+                        onChanged: (val) => setState(() => _genero = val),
+                        validator: _validaGenero,
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _telefoneController,
+                        decoration: InputDecoration(
+                          labelText: 'Telefone de contato * (ex: (41) 91234-5678)',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.phone),
+                        ),
+                        keyboardType: TextInputType.phone,
+                        validator: _validaTelefone,
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _instagramController,
+                        decoration: InputDecoration(
+                          labelText: 'Perfil Instagram',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.camera_alt),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _facebookController,
+                        decoration: InputDecoration(
+                          labelText: 'Perfil Facebook',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.facebook),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      TextFormField(
+                        controller: _tiktokController,
+                        decoration: InputDecoration(
+                          labelText: 'Perfil TikTok',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.music_note),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      SwitchListTile(
+                        title: const Text('Ativo', style: TextStyle(fontWeight: FontWeight.w600)),
+                        value: _ativo,
+                        activeColor: Colors.indigo,
+                        onChanged: (v) => setState(() => _ativo = v),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        tileColor: Colors.indigo.withOpacity(0.05),
+                      ),
+                      const SizedBox(height: 28),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: ElevatedButton.icon(
+                          onPressed: _salvar,
+                          icon: const Icon(Icons.save_alt, color: Colors.white),
+                          label: const Text(
+                            'Salvar',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.indigo.shade700,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            elevation: 4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'E-mail *'),
-                keyboardType: TextInputType.emailAddress,
-                validator: _validaEmail,
-              ),
-              TextFormField(
-                controller: _dataNascController,
-                decoration: const InputDecoration(labelText: 'Data de nascimento * (AAAA-MM-DD)'),
-                keyboardType: TextInputType.datetime,
-                validator: _validaDataNasc,
-              ),
-              DropdownButtonFormField<String>(
-                decoration: const InputDecoration(labelText: 'Gênero *'),
-                value: _genero,
-                items: _generos.map((g) => DropdownMenuItem(value: g, child: Text(g))).toList(),
-                onChanged: (val) => setState(() => _genero = val),
-                validator: _validaGenero,
-              ),
-              TextFormField(
-                controller: _telefoneController,
-                decoration: const InputDecoration(labelText: 'Telefone de contato * (ex: (41) 91234-5678)'),
-                keyboardType: TextInputType.phone,
-                validator: _validaTelefone,
-              ),
-              TextFormField(
-                controller: _instagramController,
-                decoration: const InputDecoration(labelText: 'Perfil Instagram'),
-              ),
-              TextFormField(
-                controller: _facebookController,
-                decoration: const InputDecoration(labelText: 'Perfil Facebook'),
-              ),
-              TextFormField(
-                controller: _tiktokController,
-                decoration: const InputDecoration(labelText: 'Perfil TikTok'),
-              ),
-              SwitchListTile(
-                title: const Text('Ativo'),
-                value: _ativo,
-                onChanged: (v) => setState(() => _ativo = v),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _salvar,
-                child: const Text('Salvar'),
-              ),
-            ],
+            ),
           ),
         ),
       ),
