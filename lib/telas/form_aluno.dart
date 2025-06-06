@@ -132,7 +132,7 @@ class _FormAlunoState extends State<FormAluno> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro de Aluno'),
-        backgroundColor: Colors.indigo.shade700,
+        backgroundColor: Colors.green.shade700,
         elevation: 6,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
@@ -160,7 +160,7 @@ class _FormAlunoState extends State<FormAluno> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.person, color: Colors.indigo.shade700, size: 48),
+                      Icon(Icons.person, color: Colors.green.shade700, size: 48),
                       const SizedBox(height: 16),
                       TextFormField(
                         controller: _nomeController,
@@ -247,10 +247,10 @@ class _FormAlunoState extends State<FormAluno> {
                       SwitchListTile(
                         title: const Text('Ativo', style: TextStyle(fontWeight: FontWeight.w600)),
                         value: _ativo,
-                        activeColor: Colors.indigo,
+                        activeColor: Colors.green, // verde
                         onChanged: (v) => setState(() => _ativo = v),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        tileColor: Colors.indigo.withOpacity(0.05),
+                        tileColor: Colors.green.withOpacity(0.05),
                       ),
                       const SizedBox(height: 28),
                       SizedBox(
@@ -268,7 +268,7 @@ class _FormAlunoState extends State<FormAluno> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo.shade700,
+                            backgroundColor: Colors.green.shade700, // verde
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             elevation: 4,
                           ),

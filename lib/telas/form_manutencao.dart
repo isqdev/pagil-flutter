@@ -56,7 +56,7 @@ class _FormTipoManutencaoState extends State<FormTipoManutencao> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tipo de Manutenção'),
-        backgroundColor: Colors.indigo.shade700,
+        backgroundColor: Colors.red.shade700, // vermelho
         elevation: 6,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
@@ -84,7 +84,7 @@ class _FormTipoManutencaoState extends State<FormTipoManutencao> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.build, color: Colors.indigo.shade700, size: 48),
+                      Icon(Icons.build, color: Colors.red.shade700, size: 48),
                       SizedBox(height: 16),
                       TextFormField(
                         controller: _nomeController,
@@ -114,14 +114,14 @@ class _FormTipoManutencaoState extends State<FormTipoManutencao> {
                       SwitchListTile(
                         title: Text('Ativo', style: TextStyle(fontWeight: FontWeight.w600)),
                         value: _ativo,
-                        activeColor: Colors.indigo,
+                        activeColor: Colors.red, // vermelho
                         onChanged: (value) {
                           setState(() {
                             _ativo = value;
                           });
                         },
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        tileColor: Colors.indigo.withOpacity(0.05),
+                        tileColor: Colors.red.withOpacity(0.05),
                       ),
                       SizedBox(height: 28),
                       SizedBox(
@@ -139,7 +139,7 @@ class _FormTipoManutencaoState extends State<FormTipoManutencao> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo.shade700,
+                            backgroundColor: Colors.red.shade700, // vermelho
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             elevation: 4,
                           ),

@@ -12,20 +12,10 @@ class TelaDashboard extends StatelessWidget {
     _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
     _DashboardOption('Fabricante', Icons.factory, Colors.orange, AppRoutes.fabricante),
     _DashboardOption('Sala', Icons.meeting_room, Colors.purple, AppRoutes.sala),
-    _DashboardOption('Banda', Icons.speaker_group_outlined, Colors.pink, null),
-    _DashboardOption('Turma', Icons.class_outlined, Colors.yellow, null),
-    _DashboardOption(
-      'TipoManutencao',
-      Icons.build,
-      Colors.red,
-      AppRoutes.manutencao,
-    ),
-    _DashboardOption(
-      'CategoriaMusica',
-      Icons.music_note,
-      Colors.teal,
-      AppRoutes.categoriaMusica,
-    ),
+    _DashboardOption('Banda', Icons.speaker_group_outlined, Colors.pink, AppRoutes.bandaArtista),
+    _DashboardOption('Turma', Icons.class_outlined, Colors.yellow, AppRoutes.turma),
+    _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao),
+    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, AppRoutes.categoriaMusica,),
   ];
 
   @override
