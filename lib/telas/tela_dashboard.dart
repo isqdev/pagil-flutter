@@ -12,8 +12,8 @@ class TelaDashboard extends StatelessWidget {
     _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
     _DashboardOption('Fabricante', Icons.factory, Colors.orange, null),
     _DashboardOption('Sala', Icons.meeting_room, Colors.purple, AppRoutes.sala),
-    _DashboardOption('Banda', Icons.meeting_room, Colors.purple, null),
-    _DashboardOption('Turma', Icons.meeting_room, Colors.purple, null),
+    _DashboardOption('Banda', Icons.meeting_room, Colors.pink, null),
+    _DashboardOption('Turma', Icons.meeting_room, Colors.yellow, null),
     _DashboardOption(
       'TipoManutencao',
       Icons.build,
