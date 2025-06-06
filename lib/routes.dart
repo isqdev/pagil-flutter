@@ -23,7 +23,7 @@ class AppRoutes {
   static Map<String, WidgetBuilder> get routes => {
     aluno: (context) => FormAluno(),
     videoAula: (context) => VideoAulaForm(),
-    //fabricante: (context) => FabricantePage(),
+    fabricante: (context) => FabricanteForm(),
     sala: (context) => FormSala(),
     manutencao: (context) => FormTipoManutencao(),
     categoriaMusica: (context) => CategoriaMusicaForm(),

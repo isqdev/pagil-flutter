@@ -10,10 +10,22 @@ class TelaDashboard extends StatelessWidget {
       AppRoutes.videoAula,
     ),
     _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
-    _DashboardOption('Fabricante', Icons.factory, Colors.orange, null),
+    _DashboardOption('Fabricante', Icons.factory, Colors.orange, AppRoutes.fabricante),
     _DashboardOption('Sala', Icons.meeting_room, Colors.purple, AppRoutes.sala),
-    _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao,),
-    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, AppRoutes.categoriaMusica),
+    _DashboardOption('Banda', Icons.meeting_room, Colors.pink, null),
+    _DashboardOption('Turma', Icons.meeting_room, Colors.yellow, null),
+    _DashboardOption(
+      'TipoManutencao',
+      Icons.build,
+      Colors.red,
+      AppRoutes.manutencao,
+    ),
+    _DashboardOption(
+      'CategoriaMusica',
+      Icons.music_note,
+      Colors.teal,
+      AppRoutes.categoriaMusica,
+    ),
   ];
 
   @override
@@ -54,45 +66,80 @@ class TelaDashboard extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      color: option.color.withOpacity(0.18),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 18,
-                          horizontal: 8,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [option.color.shade100, option.color.shade50, Colors.white],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: option.color.withOpacity(0.18),
+                              blurRadius: 16,
+                              offset: const Offset(0, 6),
+                            ),
+                          ],
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: option.color,
-                              radius: 34,
-                              child: Icon(
-                                option.icon,
-                                color: Colors.white,
-                                size: 36,
-                              ),
-                            ),
-                            const SizedBox(height: 18),
-                            Text(
-                              option.title,
-                              style: TextStyle(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w600,
-                                color: option.color.shade700,
-                                letterSpacing: 1.1,
-                              ),
-                            ),
-                            if (option.route != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 18,
+                            horizontal: 8,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: option.color,
+                                radius: 34,
                                 child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 18,
-                                  color: option.color.shade700,
+                                  option.icon,
+                                  color: Colors.white,
+                                  size: 36,
                                 ),
                               ),
-                          ],
+                              const SizedBox(height: 18),
+                              Text(
+                                option.title,
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w600,
+                                  color: option.color.shade700,
+                                  letterSpacing: 1.1,
+                                ),
+                              ),
+                              if (option.route != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 16.0),
+                                  child: SizedBox(
+                                    width: 110,
+                                    height: 36,
+                                    child: ElevatedButton(
+                                      onPressed:
+                                          () => Navigator.pushNamed(
+                                            context,
+                                            option.route!,
+                                          ),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: option.color,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        elevation: 2,
+                                        foregroundColor: Colors.white,
+                                        textStyle: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      child: const Text('Acessar'),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
