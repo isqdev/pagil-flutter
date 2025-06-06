@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pagil_flutter/telas/form_banda_artista.dart';
+import 'package:pagil_flutter/telas/form_turma.dart';
 import 'telas/form_aluno.dart';
 import './telas/form_categoria_musica.dart';
 import './telas/form_fabricante.dart';
@@ -7,6 +9,7 @@ import './telas/form_sala.dart';
 import './telas/tela_dashboard.dart';
 import './telas/form_video_aula.dart';
 
+
 class AppRoutes {
   static const String aluno = '/aluno';
   static const String videoAula = '/videoaula';
@@ -14,6 +17,8 @@ class AppRoutes {
   static const String sala = '/sala';
   static const String manutencao = '/manutencao';
   static const String categoriaMusica = '/categoria-musica';
+  static const String bandaArtista = '/bandaArtista';
+  static const String turma = '/turma';
 
   static Map<String, WidgetBuilder> get routes => {
     aluno: (context) => FormAluno(),
@@ -22,5 +27,8 @@ class AppRoutes {
     sala: (context) => FormSala(),
     manutencao: (context) => FormTipoManutencao(),
     categoriaMusica: (context) => CategoriaMusicaForm(),
+    bandaArtista: (context) => BandaArtistaForm(),
+    turma: (context) => FormTurma()
+
   };
 }
