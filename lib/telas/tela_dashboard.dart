@@ -1,67 +1,117 @@
 import 'package:flutter/material.dart';
+import '../routes.dart';
 
 class TelaDashboard extends StatelessWidget {
   final List<_DashboardOption> options = [
-    _DashboardOption('VideoAula', Icons.play_circle_fill, Colors.blue),
-    _DashboardOption('Aluno', Icons.person, Colors.green),
-    _DashboardOption('Fabricante', Icons.factory, Colors.orange),
-    _DashboardOption('Sala', Icons.meeting_room, Colors.purple),
-    _DashboardOption('TipoManutencao', Icons.build, Colors.red),
-    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal),
+    _DashboardOption('VideoAula', Icons.play_circle_fill, Colors.blue, null),
+    _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
+    _DashboardOption('Fabricante', Icons.factory, Colors.orange, null),
+    _DashboardOption('Sala', Icons.meeting_room, Colors.purple, null),
+    _DashboardOption(
+      'TipoManutencao',
+      Icons.build,
+      Colors.red,
+      AppRoutes.manutencao,
+    ),
+    _DashboardOption(
+      'CategoriaMusica',
+      Icons.music_note,
+      Colors.teal,
+      AppRoutes.categoriaMusica,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
-        backgroundColor: Colors.indigo,
+        title: const Text('Dashboard'),
+        backgroundColor: Colors.indigo.shade700,
+        elevation: 6,
+        centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          children: options.map((option) {
-            return GestureDetector(
-              onTap: () {
-                // Navegação ou ação ao clicar
-              },
-              child: Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                color: option.color.withOpacity(0.15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: option.color,
-                      radius: 30,
-                      child: Icon(option.icon, color: Colors.white, size: 32),
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      option.title,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: option.color,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFE3E6F3), Color(0xFFF8F8FF)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 18,
+            mainAxisSpacing: 18,
+            children:
+                options.map((option) {
+                  return GestureDetector(
+                    onTap:
+                        option.route != null
+                            ? () => Navigator.pushNamed(context, option.route!)
+                            : null,
+                    child: Card(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      color: option.color.withOpacity(0.18),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 18,
+                          horizontal: 8,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: option.color,
+                              radius: 34,
+                              child: Icon(
+                                option.icon,
+                                color: Colors.white,
+                                size: 36,
+                              ),
+                            ),
+                            const SizedBox(height: 18),
+                            Text(
+                              option.title,
+                              style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.w600,
+                                color: option.color.shade700,
+                                letterSpacing: 1.1,
+                              ),
+                            ),
+                            if (option.route != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 18,
+                                  color: option.color.shade700,
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
+                  );
+                }).toList(),
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.indigo,
-        unselectedItemColor: Colors.grey,
-        items: [
+        selectedItemColor: Colors.indigo.shade700,
+        unselectedItemColor: Colors.grey.shade500,
+        backgroundColor: Colors.white,
+        elevation: 10,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
             label: 'Dashboard',
@@ -79,7 +129,8 @@ class TelaDashboard extends StatelessWidget {
 class _DashboardOption {
   final String title;
   final IconData icon;
-  final Color color;
+  final MaterialColor color;
+  final String? route;
 
-  _DashboardOption(this.title, this.icon, this.color);
+  _DashboardOption(this.title, this.icon, this.color, this.route);
 }
