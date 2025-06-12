@@ -8,6 +8,7 @@ import './telas/form_manutencao.dart';
 import './telas/form_sala.dart';
 import './telas/tela_dashboard.dart';
 import './telas/form_video_aula.dart';
+import './telas/lista_fabricante.dart';
 
 
 class AppRoutes {
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String categoriaMusica = '/categoria-musica';
   static const String bandaArtista = '/bandaArtista';
   static const String turma = '/turma';
+  static const String listaFabricante = '/lista-fabricante';
 
   static Map<String, WidgetBuilder> get routes => {
     aluno: (context) => FormAluno(),
@@ -30,7 +32,7 @@ class AppRoutes {
     bandaArtista: (context) => BandaArtistaForm(onSubmit: (value) {
       // TODO: implement onSubmit logic
     }),
-    turma: (context) => FormTurma()
-
+    turma: (context) => FormTurma(),
+    listaFabricante: (context) => const ListaFabricante(),
   };
 }

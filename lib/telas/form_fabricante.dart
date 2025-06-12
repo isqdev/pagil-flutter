@@ -21,9 +21,15 @@ class _FabricanteFormState extends State<FabricanteForm> {
   // Função para validar o formulário
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Dados enviados!')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Dados enviados!')),
+      );
+      Future.delayed(const Duration(milliseconds: 400), () {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          '/lista-fabricante',
+          (route) => false,
+        );
+      });
     }
   }
 
