@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pagil_flutter/settings/routes.dart'; // Importe o arquivo de rotas correto
-// import '../routes.dart'; // Remova ou comente esta linha se for redundante
+import '../settings/routes.dart';
 
 class TelaDashboard extends StatefulWidget {
   @override
@@ -12,64 +11,42 @@ class _TelaDashboardState extends State<TelaDashboard> {
 
   final List<_DashboardOption> options = [
     _DashboardOption(
-      'Video Aulas', // Nome para exibir na UI
+      'VideoAula',
       Icons.play_circle_fill,
       Colors.blue,
-      AppRoutes.videoAulaForm, // ATUALIZADO: Usando a nova constante
+      AppRoutes.videoAula,
     ),
+    _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
     _DashboardOption(
-      'Form Aluno', // Nome para exibir na UI
-      Icons.person,
-      Colors.green,
-      AppRoutes.alunoForm, // ATUALIZADO: Usando a nova constante
-    ),
-    _DashboardOption(
-      'Lista Alunos', // **NOVA OPÇÃO PARA A LISTA DE ALUNOS**
-      Icons.people_alt, // Ícone diferente para lista
-      Colors.lightGreen, // Cor diferente para lista
-      AppRoutes.listaAluno, // Usando a nova constante da lista
-    ),
-    _DashboardOption(
-      'Form Fabricante', // Nome para exibir na UI
+      'Fabricante',
       Icons.factory,
       Colors.orange,
-      AppRoutes.fabricanteForm, // ATUALIZADO: Usando a nova constante
+      AppRoutes.fabricante,
     ),
-    _DashboardOption(
-      'Lista Fabricantes', // **NOVA OPÇÃO PARA A LISTA DE FABRICANTES**
-      Icons.precision_manufacturing, // Ícone diferente para lista
-      Colors.deepOrange, // Cor diferente para lista
-      AppRoutes.listaFabricante, // Usando a constante da lista de fabricantes
-    ),
-    _DashboardOption(
-      'Sala',
-      Icons.meeting_room,
-      Colors.purple,
-      AppRoutes.salaForm, // ATUALIZADO
-    ),
+    _DashboardOption('Sala', Icons.meeting_room, Colors.purple, AppRoutes.sala),
     _DashboardOption(
       'Banda',
       Icons.speaker_group_outlined,
       Colors.pink,
-      AppRoutes.bandaArtistaForm, // ATUALIZADO
+      AppRoutes.bandaArtista,
     ),
     _DashboardOption(
       'Turma',
       Icons.class_outlined,
       Colors.yellow,
-      AppRoutes.turmaForm, // ATUALIZADO
+      AppRoutes.turma,
     ),
     _DashboardOption(
-      'Tipo Manutenção', // Nome para exibir na UI
+      'TipoManutencao',
       Icons.build,
       Colors.red,
-      AppRoutes.manutencaoForm, // ATUALIZADO
+      AppRoutes.manutencao,
     ),
     _DashboardOption(
-      'Categoria Música', // Nome para exibir na UI
+      'CategoriaMusica',
       Icons.music_note,
       Colors.teal,
-      AppRoutes.categoriaMusicaForm, // ATUALIZADO
+      AppRoutes.categoriaMusica,
     ),
   ];
 
@@ -339,7 +316,7 @@ class _AnimatedColorAppBarState extends State<AnimatedColorAppBar>
               IconButton(
                 icon: Icon(
                   widget.isDark ? Icons.light_mode : Icons.dark_mode,
-                  color: const Color(0xFFF8F8FF),
+                  color: Color(0xFFF8F8FF),
                 ),
                 tooltip: 'Alternar tema',
                 onPressed: widget.onThemeToggle,
