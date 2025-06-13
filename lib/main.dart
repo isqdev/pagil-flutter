@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pagil_flutter/settings/routes.dart';
 import 'package:pagil_flutter/telas/categoria_musica_form.dart';
 import 'package:pagil_flutter/telas/form_video_aula.dart';
 import 'telas/tela_dashboard.dart';
-import 'routes.dart';
+import 'routes.dart'; // Mantido conforme sua solicitação
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto',
       ),
       home: TelaDashboard(),
-      routes: AppRoutes.routes,
+      routes: AppRoutes.routes, // Esta linha usa seu mapa de rotas atualizado
       debugShowCheckedModeBanner: false,
     );
   }

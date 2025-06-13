@@ -1,38 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:pagil_flutter/telas/form_banda_artista.dart';
 import 'package:pagil_flutter/telas/form_turma.dart';
-import '../telas/form_aluno.dart';
-import '../telas/form_categoria_musica.dart';
-import '../telas/form_fabricante.dart';
-import '../telas/form_manutencao.dart';
-import '../telas/form_sala.dart';
-import '../telas/tela_dashboard.dart';
-import '../telas/form_video_aula.dart';
-import '../telas/lista_fabricante.dart';
-
+import 'package:pagil_flutter/telas/form_aluno.dart';
+import 'package:pagil_flutter/telas/form_categoria_musica.dart';
+import 'package:pagil_flutter/telas/form_fabricante.dart';
+import 'package:pagil_flutter/telas/form_manutencao.dart';
+import 'package:pagil_flutter/telas/form_sala.dart';
+import 'package:pagil_flutter/telas/tela_dashboard.dart'; // Mantenha se for sua rota '/'
+import 'package:pagil_flutter/telas/form_video_aula.dart';
+import 'package:pagil_flutter/telas/lista_fabricante.dart';
+import 'package:pagil_flutter/telas/lista_aluno.dart'; // Importe a nova tela ListaAluno
 
 class AppRoutes {
-  static const String aluno = '/aluno';
-  static const String videoAula = '/videoaula';
-  static const String fabricante = '/fabricante';
-  static const String sala = '/sala';
-  static const String manutencao = '/manutencao';
-  static const String categoriaMusica = '/categoria-musica';
-  static const String bandaArtista = '/bandaArtista';
-  static const String turma = '/turma';
+  static const String dashboard = '/'; // Adicionado para clareza
+  static const String alunoForm =
+      '/aluno-form'; // Renomeado para consistência com 'form'
+  static const String listaAluno =
+      '/lista-aluno'; // **NOVA ROTA PARA LISTA DE ALUNOS**
+  static const String videoAulaForm =
+      '/videoaula-form'; // Renomeado para consistência
+  static const String fabricanteForm =
+      '/fabricante-form'; // Renomeado para consistência
   static const String listaFabricante = '/lista-fabricante';
+  static const String salaForm = '/sala-form'; // Renomeado
+  static const String manutencaoForm = '/manutencao-form'; // Renomeado
+  static const String categoriaMusicaForm =
+      '/categoria-musica-form'; // Renomeado
+  static const String bandaArtistaForm = '/banda-artista-form'; // Renomeado
+  static const String turmaForm = '/turma-form'; // Renomeado
 
   static Map<String, WidgetBuilder> get routes => {
-    aluno: (context) => FormAluno(),
-    videoAula: (context) => VideoAulaForm(),
-    fabricante: (context) => FabricanteForm(),
-    sala: (context) => FormSala(),
-    manutencao: (context) => FormTipoManutencao(),
-    categoriaMusica: (context) => CategoriaMusicaForm(),
-    bandaArtista: (context) => BandaArtistaForm(onSubmit: (value) {
-      // TODO: implement onSubmit logic
-    }),
-    turma: (context) => FormTurma(),
+    dashboard: (context) => TelaDashboard(), // Rota raiz do aplicativo
+    alunoForm: (context) => FormAluno(),
+    listaAluno: (context) => const ListaAluno(), // **Adicione esta linha**
+    videoAulaForm: (context) => VideoAulaForm(),
+    fabricanteForm: (context) => FabricanteForm(),
     listaFabricante: (context) => const ListaFabricante(),
+    salaForm: (context) => FormSala(),
+    manutencaoForm: (context) => FormTipoManutencao(),
+    categoriaMusicaForm: (context) => CategoriaMusicaForm(),
+    bandaArtistaForm:
+        (context) => BandaArtistaForm(
+          onSubmit: (value) {
+            // TODO: implement onSubmit logic
+          },
+        ),
+    turmaForm: (context) => FormTurma(),
   };
 }

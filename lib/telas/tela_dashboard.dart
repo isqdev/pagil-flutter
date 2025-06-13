@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../routes.dart';
+import 'package:pagil_flutter/settings/routes.dart'; // Importe o arquivo de rotas correto
+// import '../routes.dart'; // Remova ou comente esta linha se for redundante
 
 class TelaDashboard extends StatefulWidget {
   @override
@@ -11,33 +12,81 @@ class _TelaDashboardState extends State<TelaDashboard> {
 
   final List<_DashboardOption> options = [
     _DashboardOption(
-      'VideoAula',
+      'Video Aulas', // Nome para exibir na UI
       Icons.play_circle_fill,
       Colors.blue,
-      AppRoutes.videoAula,
+      AppRoutes.videoAulaForm, // ATUALIZADO: Usando a nova constante
     ),
-    _DashboardOption('Aluno', Icons.person, Colors.green, AppRoutes.aluno),
-    _DashboardOption('Fabricante', Icons.factory, Colors.orange, AppRoutes.fabricante),
-    _DashboardOption('Sala', Icons.meeting_room, Colors.purple, AppRoutes.sala),
-    _DashboardOption('Banda', Icons.speaker_group_outlined, Colors.pink, AppRoutes.bandaArtista),
-    _DashboardOption('Turma', Icons.class_outlined, Colors.yellow, AppRoutes.turma),
-    _DashboardOption('TipoManutencao', Icons.build, Colors.red, AppRoutes.manutencao),
-    _DashboardOption('CategoriaMusica', Icons.music_note, Colors.teal, AppRoutes.categoriaMusica,),
+    _DashboardOption(
+      'Form Aluno', // Nome para exibir na UI
+      Icons.person,
+      Colors.green,
+      AppRoutes.alunoForm, // ATUALIZADO: Usando a nova constante
+    ),
+    _DashboardOption(
+      'Lista Alunos', // **NOVA OPÇÃO PARA A LISTA DE ALUNOS**
+      Icons.people_alt, // Ícone diferente para lista
+      Colors.lightGreen, // Cor diferente para lista
+      AppRoutes.listaAluno, // Usando a nova constante da lista
+    ),
+    _DashboardOption(
+      'Form Fabricante', // Nome para exibir na UI
+      Icons.factory,
+      Colors.orange,
+      AppRoutes.fabricanteForm, // ATUALIZADO: Usando a nova constante
+    ),
+    _DashboardOption(
+      'Lista Fabricantes', // **NOVA OPÇÃO PARA A LISTA DE FABRICANTES**
+      Icons.precision_manufacturing, // Ícone diferente para lista
+      Colors.deepOrange, // Cor diferente para lista
+      AppRoutes.listaFabricante, // Usando a constante da lista de fabricantes
+    ),
+    _DashboardOption(
+      'Sala',
+      Icons.meeting_room,
+      Colors.purple,
+      AppRoutes.salaForm, // ATUALIZADO
+    ),
+    _DashboardOption(
+      'Banda',
+      Icons.speaker_group_outlined,
+      Colors.pink,
+      AppRoutes.bandaArtistaForm, // ATUALIZADO
+    ),
+    _DashboardOption(
+      'Turma',
+      Icons.class_outlined,
+      Colors.yellow,
+      AppRoutes.turmaForm, // ATUALIZADO
+    ),
+    _DashboardOption(
+      'Tipo Manutenção', // Nome para exibir na UI
+      Icons.build,
+      Colors.red,
+      AppRoutes.manutencaoForm, // ATUALIZADO
+    ),
+    _DashboardOption(
+      'Categoria Música', // Nome para exibir na UI
+      Icons.music_note,
+      Colors.teal,
+      AppRoutes.categoriaMusicaForm, // ATUALIZADO
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final backgroundGradient = _isDark
-        ? const LinearGradient(
-            colors: [Color(0xFF23243A), Color(0xFF181824)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          )
-        : const LinearGradient(
-            colors: [Color(0xFFE3E6F3), Color(0xFFF8F8FF)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          );
+    final backgroundGradient =
+        _isDark
+            ? const LinearGradient(
+              colors: [Color(0xFF23243A), Color(0xFF181824)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            )
+            : const LinearGradient(
+              colors: [Color(0xFFE3E6F3), Color(0xFFF8F8FF)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            );
 
     return Scaffold(
       appBar: PreferredSize(
@@ -52,122 +101,130 @@ class _TelaDashboardState extends State<TelaDashboard> {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: backgroundGradient,
-        ),
+        decoration: BoxDecoration(gradient: backgroundGradient),
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: GridView.count(
             crossAxisCount: 2,
             crossAxisSpacing: 18,
             mainAxisSpacing: 18,
-            children: options.map((option) {
-              return GestureDetector(
-                onTap: option.route != null
-                    ? () => Navigator.pushNamed(context, option.route!)
-                    : null,
-                child: Card(
-                  elevation: 8,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: _isDark
-                      ? option.color.shade900.withOpacity(0.7)
-                      : null,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: _isDark
-                          ? null
-                          : LinearGradient(
-                              colors: [
-                                option.color.shade100,
-                                option.color.shade50,
-                                Colors.white
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                      color: _isDark
-                          ? option.color.shade900.withOpacity(0.7)
-                          : null,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: option.color.withOpacity(0.18),
-                          blurRadius: 16,
-                          offset: const Offset(0, 6),
-                        ),
-                      ],
-                    ),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 18,
-                        horizontal: 8,
+            children:
+                options.map((option) {
+                  return GestureDetector(
+                    onTap:
+                        option.route != null
+                            ? () => Navigator.pushNamed(context, option.route!)
+                            : null,
+                    child: Card(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: option.color,
-                            radius: 34,
-                            child: Icon(
-                              option.icon,
-                              color: Colors.white,
-                              size: 36,
-                            ),
-                          ),
-                          const SizedBox(height: 18),
-                          Text(
-                            option.title,
-                            style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w600,
-                              color: _isDark
-                                  ? option.color.shade100
-                                  : option.color.shade700,
-                              letterSpacing: 1.1,
-                            ),
-                          ),
-                          if (option.route != null)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: SizedBox(
-                                width: 110,
-                                height: 36,
-                                child: ElevatedButton(
-                                  onPressed: () => Navigator.pushNamed(
-                                    context,
-                                    option.route!,
+                      color:
+                          _isDark
+                              ? option.color.shade900.withOpacity(0.7)
+                              : null,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient:
+                              _isDark
+                                  ? null
+                                  : LinearGradient(
+                                    colors: [
+                                      option.color.shade100,
+                                      option.color.shade50,
+                                      Colors.white,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: option.color,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    elevation: 2,
-                                    foregroundColor: Colors.white,
-                                    textStyle: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                  child: const Text('Acessar'),
+                          color:
+                              _isDark
+                                  ? option.color.shade900.withOpacity(0.7)
+                                  : null,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: option.color.withOpacity(0.18),
+                              blurRadius: 16,
+                              offset: const Offset(0, 6),
+                            ),
+                          ],
+                        ),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 18,
+                            horizontal: 8,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: option.color,
+                                radius: 34,
+                                child: Icon(
+                                  option.icon,
+                                  color: Colors.white,
+                                  size: 36,
                                 ),
                               ),
-                            ),
-                        ],
+                              const SizedBox(height: 18),
+                              Text(
+                                option.title,
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w600,
+                                  color:
+                                      _isDark
+                                          ? option.color.shade100
+                                          : option.color.shade700,
+                                  letterSpacing: 1.1,
+                                ),
+                              ),
+                              if (option.route != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 16.0),
+                                  child: SizedBox(
+                                    width: 110,
+                                    height: 36,
+                                    child: ElevatedButton(
+                                      onPressed:
+                                          () => Navigator.pushNamed(
+                                            context,
+                                            option.route!,
+                                          ),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: option.color,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                        ),
+                                        elevation: 2,
+                                        foregroundColor: Colors.white,
+                                        textStyle: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      child: const Text('Acessar'),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              );
-            }).toList(),
+                  );
+                }).toList(),
           ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: _isDark ? Colors.indigo.shade200 : Colors.indigo.shade700,
+        selectedItemColor:
+            _isDark ? Colors.indigo.shade200 : Colors.indigo.shade700,
         unselectedItemColor: Colors.grey.shade500,
         backgroundColor: _isDark ? const Color(0xFF23243A) : Colors.white,
         elevation: 10,
@@ -199,13 +256,18 @@ class _DashboardOption {
 class AnimatedColorAppBar extends StatefulWidget {
   final bool isDark;
   final VoidCallback onThemeToggle;
-  const AnimatedColorAppBar({Key? key, required this.isDark, required this.onThemeToggle}) : super(key: key);
+  const AnimatedColorAppBar({
+    Key? key,
+    required this.isDark,
+    required this.onThemeToggle,
+  }) : super(key: key);
 
   @override
   State<AnimatedColorAppBar> createState() => _AnimatedColorAppBarState();
 }
 
-class _AnimatedColorAppBarState extends State<AnimatedColorAppBar> with SingleTickerProviderStateMixin {
+class _AnimatedColorAppBarState extends State<AnimatedColorAppBar>
+    with SingleTickerProviderStateMixin {
   final List<Color> _colors = [
     Colors.red,
     Colors.orange,
@@ -275,7 +337,10 @@ class _AnimatedColorAppBarState extends State<AnimatedColorAppBar> with SingleTi
             centerTitle: true,
             actions: [
               IconButton(
-                icon: Icon(widget.isDark ? Icons.light_mode : Icons.dark_mode, color: Color(0xFFF8F8FF)),
+                icon: Icon(
+                  widget.isDark ? Icons.light_mode : Icons.dark_mode,
+                  color: const Color(0xFFF8F8FF),
+                ),
                 tooltip: 'Alternar tema',
                 onPressed: widget.onThemeToggle,
               ),
