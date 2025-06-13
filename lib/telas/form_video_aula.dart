@@ -33,23 +33,29 @@ class _VideoAulaFormState extends State<VideoAulaForm> {
       // Mostra um AlertDialog como no FormTipoManutencao
       showDialog(
         context: context,
-        builder:
-            (_) => AlertDialog(
-              title: const Text('Sucesso'),
-              content: Text(
-                'VideoAula salva!\n\n'
-                'ID: ${_idController.text}\n'
-                'Nome: ${_nomeController.text}\n'
-                'Link do Vídeo: ${_linkVideoController.text}\n'
-                'Ativo: ${_ativo ? "Sim" : "Não"}',
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('OK'),
-                ),
-              ],
+        builder: (_) => AlertDialog(
+          title: const Text('Sucesso'),
+          content: Text(
+            'VideoAula salva!\n\n'
+            'ID: ${_idController.text}\n'
+            'Nome: ${_nomeController.text}\n'
+            'Link do Vídeo: ${_linkVideoController.text}\n'
+            'Ativo: ${_ativo ? "Sim" : "Não"}'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Future.delayed(const Duration(milliseconds: 400), () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/lista-videoaula',
+                    (route) => false,
+                  );
+                });
+              },
+              child: const Text('OK'),
             ),
+          ],
+        ),
       );
 
       // Limpa os campos após salvar
@@ -73,7 +79,7 @@ class _VideoAulaFormState extends State<VideoAulaForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('VideoAula'),
-        backgroundColor: Colors.indigo.shade700,
+        backgroundColor: Colors.blue,
         elevation: 6,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
@@ -105,7 +111,7 @@ class _VideoAulaFormState extends State<VideoAulaForm> {
                     children: [
                       Icon(
                         Icons.videocam,
-                        color: Colors.indigo.shade700,
+                        color: Colors.blue.shade700,
                         size: 48,
                       ), // Ícone personalizado
                       const SizedBox(height: 16),
@@ -173,7 +179,7 @@ class _VideoAulaFormState extends State<VideoAulaForm> {
                           style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         value: _ativo,
-                        activeColor: Colors.indigo,
+                        activeColor: Colors.blue,
                         onChanged: (value) {
                           setState(() {
                             _ativo = value;
@@ -182,7 +188,7 @@ class _VideoAulaFormState extends State<VideoAulaForm> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        tileColor: Colors.indigo.withOpacity(0.05),
+                        tileColor: Colors.blue.withOpacity(0.05),
                       ),
                       const SizedBox(height: 28),
                       SizedBox(
@@ -200,7 +206,7 @@ class _VideoAulaFormState extends State<VideoAulaForm> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo.shade700,
+                            backgroundColor: Colors.blue.shade700,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),

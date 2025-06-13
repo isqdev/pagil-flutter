@@ -56,7 +56,15 @@ class _BandaArtistaFormState extends State<BandaArtistaForm> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Future.delayed(const Duration(milliseconds: 400), () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/lista-banda-artista',
+                    (route) => false,
+                  );
+                });
+              },
               child: const Text('Fechar'),
             ),
           ],

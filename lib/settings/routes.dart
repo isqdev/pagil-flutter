@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pagil_flutter/telas/form_banda_artista.dart';
 import 'package:pagil_flutter/telas/form_turma.dart';
-import 'package:pagil_flutter/telas/form_aluno.dart';
-import 'package:pagil_flutter/telas/form_categoria_musica.dart';
-import 'package:pagil_flutter/telas/form_fabricante.dart';
-import 'package:pagil_flutter/telas/form_manutencao.dart';
-import 'package:pagil_flutter/telas/form_sala.dart';
-import 'package:pagil_flutter/telas/tela_dashboard.dart'; // Mantenha se for sua rota '/'
-import 'package:pagil_flutter/telas/form_video_aula.dart';
-import 'package:pagil_flutter/telas/lista_fabricante.dart';
-import 'package:pagil_flutter/telas/lista_aluno.dart'; // Importe a nova tela ListaAluno
+import '../telas/form_aluno.dart';
+import '../telas/form_categoria_musica.dart';
+import '../telas/form_fabricante.dart';
+import '../telas/form_manutencao.dart';
+import '../telas/form_sala.dart';
+import '../telas/tela_dashboard.dart';
+import '../telas/form_video_aula.dart';
+import '../telas/lista_fabricante.dart';
+
 
 class AppRoutes {
   static const String dashboard = '/'; // Adicionado para clareza
@@ -22,12 +22,6 @@ class AppRoutes {
   static const String fabricanteForm =
       '/fabricante-form'; // Renomeado para consistência
   static const String listaFabricante = '/lista-fabricante';
-  static const String salaForm = '/sala-form'; // Renomeado
-  static const String manutencaoForm = '/manutencao-form'; // Renomeado
-  static const String categoriaMusicaForm =
-      '/categoria-musica-form'; // Renomeado
-  static const String bandaArtistaForm = '/banda-artista-form'; // Renomeado
-  static const String turmaForm = '/turma-form'; // Renomeado
 
   static Map<String, WidgetBuilder> get routes => {
     dashboard: (context) => TelaDashboard(), // Rota raiz do aplicativo
@@ -36,15 +30,5 @@ class AppRoutes {
     videoAulaForm: (context) => VideoAulaForm(),
     fabricanteForm: (context) => FabricanteForm(),
     listaFabricante: (context) => const ListaFabricante(),
-    salaForm: (context) => FormSala(),
-    manutencaoForm: (context) => FormTipoManutencao(),
-    categoriaMusicaForm: (context) => CategoriaMusicaForm(),
-    bandaArtistaForm:
-        (context) => BandaArtistaForm(
-          onSubmit: (value) {
-            // TODO: implement onSubmit logic
-          },
-        ),
-    turmaForm: (context) => FormTurma(),
   };
 }
