@@ -67,7 +67,15 @@ class _FormAlunoState extends State<FormAluno> {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.of(ctx).pop(),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  Future.delayed(const Duration(milliseconds: 400), () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/lista-aluno',
+                      (route) => false,
+                    );
+                  });
+                },
                 child: const Text('Fechar'),
               ),
             ],

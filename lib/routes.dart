@@ -9,7 +9,13 @@ import './telas/form_sala.dart';
 import './telas/tela_dashboard.dart';
 import './telas/form_video_aula.dart';
 import './telas/lista_fabricante.dart';
-
+import './telas/lista_manutencao.dart';
+import './telas/lista_aluno.dart';
+import './telas/lista_sala.dart';
+import './telas/lista_turma.dart';
+import './telas/lista_banda_artista.dart';
+import './telas/lista_categoria_musica.dart';
+import './telas/lista_videoaula.dart';
 
 class AppRoutes {
   static const String aluno = '/aluno';
@@ -21,6 +27,13 @@ class AppRoutes {
   static const String bandaArtista = '/bandaArtista';
   static const String turma = '/turma';
   static const String listaFabricante = '/lista-fabricante';
+  static const String listaManutencao = '/lista-manutencao';
+  static const String listaAluno = '/lista-aluno';
+  static const String listaSala = '/lista-sala';
+  static const String listaTurma = '/lista-turma';
+  static const String listaBandaArtista = '/lista-banda-artista';
+  static const String listaCategoriaMusica = '/lista-categoria-musica';
+  static const String listaVideoAula = '/lista-videoaula';
 
   static Map<String, WidgetBuilder> get routes => {
     aluno: (context) => FormAluno(),
@@ -34,5 +47,12 @@ class AppRoutes {
     }),
     turma: (context) => FormTurma(),
     listaFabricante: (context) => const ListaFabricante(),
+    listaManutencao: (context) => const ListaManutencao(),
+    listaAluno: (context) => const ListaAluno(),
+    listaSala: (context) => const ListaSala(),
+    listaTurma: (context) => const ListaTurma(),
+    listaBandaArtista: (context) => const ListaBandaArtista(),
+    listaCategoriaMusica: (context) => const ListaCategoriaMusica(),
+    listaVideoAula: (context) => const ListaVideoAula(),
   };
 }

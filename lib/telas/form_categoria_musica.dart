@@ -19,17 +19,7 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
   bool _ativo = true;
 
   void _salvar() {
-    // Renomeado de _submitForm para _salvar
     if (_formKey.currentState!.validate()) {
-      // Exemplo de como você criaria um DTO, se existisse:
-      // final categoriaMusica = CategoriaMusicaDTO(
-      //   id: UniqueKey().toString(), // Gerando um ID temporário
-      //   nome: _nomeController.text,
-      //   descricao: _descricaoController.text.isNotEmpty ? _descricaoController.text : null,
-      //   ativo: _ativo,
-      // );
-
-      // Mostra um AlertDialog como no FormTipoManutencao
       showDialog(
         context: context,
         builder:
@@ -43,15 +33,21 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
               ),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Future.delayed(const Duration(milliseconds: 400), () {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/lista-categoria-musica',
+                        (route) => false,
+                      );
+                    });
+                  },
                   child: const Text('OK'),
                 ),
               ],
             ),
       );
-
-      // Limpa os campos após salvar
-      _formKey.currentState!.reset(); // Reseta o formulário
+      _formKey.currentState!.reset();
       setState(() {
         _ativo = true;
       });
@@ -70,7 +66,7 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Categoria de Música'),
-        backgroundColor: Colors.indigo.shade700,
+        backgroundColor: Colors.teal,
         elevation: 6,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
@@ -102,7 +98,7 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
                     children: [
                       Icon(
                         Icons.queue_music,
-                        color: Colors.indigo.shade700,
+                        color: Colors.teal.shade700,
                         size: 48,
                       ), // Ícone personalizado
                       const SizedBox(height: 16),
@@ -152,7 +148,7 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
                           style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         value: _ativo,
-                        activeColor: Colors.indigo,
+                        activeColor: Colors.teal,
                         onChanged: (value) {
                           setState(() {
                             _ativo = value;
@@ -179,7 +175,7 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo.shade700,
+                            backgroundColor: Colors.teal.shade700,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),

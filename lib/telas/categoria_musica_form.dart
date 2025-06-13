@@ -32,22 +32,28 @@ class _CategoriaMusicaFormState extends State<CategoriaMusicaForm> {
       // Mostra um AlertDialog como no FormTipoManutencao
       showDialog(
         context: context,
-        builder:
-            (_) => AlertDialog(
-              title: const Text('Sucesso'),
-              content: Text(
-                'Categoria de Música salva!\n\n'
-                'Nome: ${_nomeController.text}\n'
-                'Descrição: ${_descricaoController.text}\n'
-                'Ativo: ${_ativo ? "Sim" : "Não"}',
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('OK'),
-                ),
-              ],
+        builder: (_) => AlertDialog(
+          title: const Text('Sucesso'),
+          content: Text(
+            'Categoria de Música salva!\n\n'
+            'Nome:  ${_nomeController.text}\n'
+            'Descrição: ${_descricaoController.text}\n'
+            'Ativo: ${_ativo ? "Sim" : "Não"}'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Future.delayed(const Duration(milliseconds: 400), () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/lista-categoria-musica',
+                    (route) => false,
+                  );
+                });
+              },
+              child: const Text('OK'),
             ),
+          ],
+        ),
       );
 
       // Limpa os campos após salvar
