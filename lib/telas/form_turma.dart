@@ -47,7 +47,15 @@ class _FormTurmaState extends State<FormTurma> {
           content: Text(turma.toString()),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Future.delayed(const Duration(milliseconds: 400), () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/lista-turma',
+                    (route) => false,
+                  );
+                });
+              },
               child: const Text('OK'),
             ),
           ],

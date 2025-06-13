@@ -24,15 +24,24 @@ class _FormTipoManutencaoState extends State<FormTipoManutencao> {
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('Sucesso'),
-          content: Text('Tipo de Manutenção salvo!\n\n'
-              'Nome: ${tipoManutencao.nome}\n'
-              'Descrição: ${tipoManutencao.descricao ?? "-"}\n'
-              'Ativo: ${tipoManutencao.ativo ? "Sim" : "Não"}'),
+          title: const Text('Sucesso'),
+          content: Text(
+            'Tipo de Manutenção salvo!\n\n'
+            'Nome: ${tipoManutencao.nome}\n'
+            'Descrição: ${tipoManutencao.descricao ?? "-"}\n'
+            'Ativo: ${tipoManutencao.ativo ? "Sim" : "Não"}'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Future.delayed(const Duration(milliseconds: 400), () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/lista-manutencao',
+                    (route) => false,
+                  );
+                });
+              },
+              child: const Text('OK'),
             ),
           ],
         ),

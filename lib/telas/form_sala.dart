@@ -31,15 +31,23 @@ class _FormSalaState extends State<FormSala> {
           title: const Text('Sucesso'),
           content: Text(
             'Sala salva!\n\n'
-            'Nome: ${sala.nome}\n'
-            'Capacidade Total: ${sala.capacidade_total_bikes}\n'
-            'Número de Filas: ${sala.numero_filas}\n'
-            'Bikes por Fila: ${sala.numero_bikes_por_fila}\n'
-            'Ativo: ${sala.ativo ? "Sim" : "Não"}',
+            'Nome: sala.nome\n'
+            'Capacidade Total: sala.capacidade_total_bikes\n'
+            'Nmero de Filas: sala.numero_filas\n'
+            'Bikes por Fila: sala.numero_bikes_por_fila\n'
+            'Ativo: sala.ativo ? "Sim" : "No"}',
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Future.delayed(const Duration(milliseconds: 400), () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/lista-sala',
+                    (route) => false,
+                  );
+                });
+              },
               child: const Text('OK'),
             ),
           ],
