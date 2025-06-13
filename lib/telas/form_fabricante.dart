@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pagil_flutter/dto/dto_fabricante.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+
 
 class FabricanteForm extends StatefulWidget {
   @override
@@ -32,6 +34,8 @@ class _FabricanteFormState extends State<FabricanteForm> {
       });
     }
   }
+  final _telefoneMask = MaskTextInputFormatter(
+      mask: '(##) #####-####', filter: {'#': RegExp(r'[0-9]')});
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +142,7 @@ class _FabricanteFormState extends State<FabricanteForm> {
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                           prefixIcon: const Icon(Icons.phone),
                         ),
+                        inputFormatters: [_telefoneMask],
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Informe o telefone';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 // Supondo que você já tenha a classe DTOAluno criada em outro arquivo
 import '../dto/dto_aluno.dart';
@@ -30,6 +31,12 @@ class _FormAlunoState extends State<FormAluno> {
     'Outro',
     'Prefiro não informar',
   ];
+
+  final _telefoneMask = MaskTextInputFormatter(
+      mask: '(##) #####-####', filter: {'#': RegExp(r'[0-9]')});
+  final _dataNascMask = MaskTextInputFormatter(
+      mask: '####-##-##', filter: {'#': RegExp(r'[0-9]')});
+
 
   @override
   void dispose() {
@@ -191,6 +198,7 @@ class _FormAlunoState extends State<FormAluno> {
                           prefixIcon: const Icon(Icons.cake),
                         ),
                         keyboardType: TextInputType.datetime,
+                        inputFormatters: [_dataNascMask],
                         validator: _validaDataNasc,
                       ),
                       const SizedBox(height: 18),
@@ -214,6 +222,7 @@ class _FormAlunoState extends State<FormAluno> {
                           prefixIcon: const Icon(Icons.phone),
                         ),
                         keyboardType: TextInputType.phone,
+                        inputFormatters: [_telefoneMask],
                         validator: _validaTelefone,
                       ),
                       const SizedBox(height: 18),
