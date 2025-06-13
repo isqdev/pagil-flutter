@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:pagil_flutter/telas/form_banda_artista.dart';
 import 'package:pagil_flutter/telas/form_turma.dart';
-import 'telas/form_aluno.dart';
-import './telas/form_categoria_musica.dart';
-import './telas/form_fabricante.dart';
-import './telas/form_manutencao.dart';
-import './telas/form_sala.dart';
-import './telas/tela_dashboard.dart';
-import './telas/form_video_aula.dart';
-import './telas/lista_fabricante.dart';
-import './telas/lista_manutencao.dart';
-import './telas/lista_aluno.dart';
-import './telas/lista_sala.dart';
-import './telas/lista_turma.dart';
-import './telas/lista_banda_artista.dart';
-import './telas/lista_categoria_musica.dart';
-import './telas/lista_videoaula.dart';
+import 'package:pagil_flutter/telas/lista_aluno.dart';
+import 'package:pagil_flutter/telas/lista_banda_artista.dart';
+import 'package:pagil_flutter/telas/lista_categoria_musica.dart';
+import 'package:pagil_flutter/telas/lista_manutencao.dart';
+import 'package:pagil_flutter/telas/lista_sala.dart';
+import 'package:pagil_flutter/telas/lista_turma.dart';
+import 'package:pagil_flutter/telas/lista_videoaula.dart';
+import '../telas/form_aluno.dart';
+import '../telas/form_categoria_musica.dart';
+import '../telas/form_fabricante.dart';
+import '../telas/form_manutencao.dart';
+import '../telas/form_sala.dart';
+import '../telas/tela_dashboard.dart';
+import '../telas/form_video_aula.dart';
+import '../telas/lista_fabricante.dart';
 
 class AppRoutes {
   static const String aluno = '/aluno';
