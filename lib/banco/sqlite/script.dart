@@ -3,10 +3,10 @@ CREATE TABLE Fabricante (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome TEXT NOT NULL,
   descricao TEXT,
-  nomeContatoPrincipal TEXT,
-  emailContato TEXT,
-  telefoneContato TEXT,
-  ativo INTEGER NOT NULL DEFAULT 1
+  nome_contato_principal TEXT,
+  email_contato TEXT,
+  telefone_contato TEXT,
+  ativo INTEGER
 )
 ''';
 

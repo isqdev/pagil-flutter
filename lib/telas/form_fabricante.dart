@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pagil_flutter/banco/sqlite/dao/DAOFabricante.dart';
 import 'package:pagil_flutter/dto/dto_fabricante.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -9,7 +10,8 @@ class FabricanteForm extends StatefulWidget {
 }
 
 class _FabricanteFormState extends State<FabricanteForm> {
-  final _formKey = GlobalKey<FormState>(); // Chave para o formulário
+  var dao = DAOFabricante();
+  final _formKey = GlobalKey<FormState>(); 
 
   // Controladores para os campos de texto
   final TextEditingController _nomeController = TextEditingController();
@@ -18,11 +20,28 @@ class _FabricanteFormState extends State<FabricanteForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _telefoneController = TextEditingController();
 
-  bool _ativo = true; // Definindo se está ativo ou não
+  bool _ativo = true; 
 
   // Função para validar o formulário
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
+      final nome = _nomeController.text.trim();
+      final descricao = _descricaoController.text.trim();
+      final nomeContatoPrincipal = _nomeContatoController.text.trim();
+      final emailContato = _emailController.text.trim();
+      final telefoneContato = _telefoneController.text.trim();
+      final ativo = _ativo;
+
+      final fabricante = DTOFabricante(
+        nome: nome,
+        descricao: descricao,
+        nomeContatoPrincipal: nomeContatoPrincipal,
+        emailContato: emailContato,
+        telefoneContato: telefoneContato,
+        ativo: ativo,
+      );
+
+      dao.salvar(fabricante);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Dados enviados!')),
       );
